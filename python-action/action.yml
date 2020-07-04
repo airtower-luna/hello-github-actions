@@ -1,0 +1,34 @@
+name: "Python addition action"
+description: "Add up to four numbers using Python"
+author: "fiona.klute@gmx.de"
+
+inputs:
+  NUM1:
+    description: "Summand one"
+    required: yes
+  NUM2:
+    description: "Summand two"
+    required: no
+    default: 0
+  NUM3:
+    description: "Summand three"
+    required: no
+    default: 0
+  NUM4:
+    description: "Summand four"
+    required: no
+    default: 0
+
+outputs:
+  sum:
+    description: Sum of the input numbers
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - '/add.py'
+
+branding:
+  icon: "plus-circle"
+  color: "purple"

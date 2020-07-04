@@ -10,3 +10,11 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: 'Mona'
+      - uses: ./python-action
+        id: tripleadd
+        with:
+          NUM1: 1
+          NUM2: 2
+          NUM3: 4
+      - run: |
+          echo "Triple-Add reports: ${{ steps.tripleadd.outputs.sum }}"
