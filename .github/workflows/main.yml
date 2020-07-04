@@ -1,2 +1,12 @@
 name: Workflow for my Hello World action
 on: push
+
+jobs:
+  build:
+    name: Hello World action
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./action-a
+        with:
+          MY_NAME: 'Mona'
