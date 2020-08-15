@@ -24,4 +24,4 @@ jobs:
           NUM1: 1
           NUM2: 4
       - run: |
-          echo Double-Add reports: ${{ steps.doubleadd.outputs.sum }}"
+          echo "Double-Add reports: ${{ steps.doubleadd.outputs.sum }}"
