@@ -18,3 +18,10 @@ jobs:
           NUM3: 4
       - run: |
           echo "Triple-Add reports: ${{ steps.tripleadd.outputs.sum }}"
+      - uses: ./composite-action
+        id: doubleadd
+        with:
+          NUM1: 1
+          NUM2: 4
+      - run: |
+          echo Double-Add reports: ${{ steps.doubleadd.outputs.sum }}"

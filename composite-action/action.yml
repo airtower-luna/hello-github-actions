@@ -1,0 +1,42 @@
+name: Composite addition action
+description: Add up to four numbers
+author: 'fiona.klute@gmx.de'
+
+inputs:
+  NUM1:
+    description: 'Summand one'
+    required: yes
+  NUM2:
+    description: 'Summand two'
+    required: no
+    default: 0
+  NUM3:
+    description: 'Summand three'
+    required: no
+    default: 0
+  NUM4:
+    description: 'Summand four'
+    required: no
+    default: 0
+
+outputs:
+  sum:
+    description: Sum of the input numbers
+    value: ${{ steps.calculate-sum.outputs.sum }}
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        for i in INPUT_NUM1 INPUT_NUM2 INPUT_NUM3 INPUT_NUM4; do
+            echo "${i}: ${!i}"
+        done
+      shell: bash
+    - run: |
+        import os
+        nums = []
+        for i in range(1,5):
+            nums.append(int(os.environ.get(f'INPUT_NUM{i}')))
+        print(f'::set-output name=sum::{sum(nums)}')
+      id: calculate-sum
+      shell: python3 {0}
