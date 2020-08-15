@@ -21,7 +21,7 @@ jobs:
       - uses: ./composite-action
         id: doubleadd
         with:
-          NUM1: 1
-          NUM2: 4
+          num1: 1
+          num2: 4
       - run: |
           echo "Double-Add reports: ${{ steps.doubleadd.outputs.sum }}"
