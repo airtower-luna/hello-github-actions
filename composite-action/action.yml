@@ -29,7 +29,7 @@ runs:
   steps:
     - run: |
         for i in INPUT_NUM1 INPUT_NUM2 INPUT_NUM3 INPUT_NUM4; do
-            echo "${i}: ${!i}"
+            echo "${i} = ${!i}"
         done
       shell: bash
     - run: |
@@ -40,3 +40,8 @@ runs:
         print(f'::set-output name=sum::{sum(nums)}')
       id: calculate-sum
       shell: python3 {0}
+      env:
+        INPUT_NUM1: ${{ inputs.NUM1 }}
+        INPUT_NUM2: ${{ inputs.NUM2 }}
+        INPUT_NUM3: ${{ inputs.NUM3 }}
+        INPUT_NUM4: ${{ inputs.NUM4 }}
