@@ -28,16 +28,20 @@ runs:
   using: composite
   steps:
     - run: |
+        echo "::group::Show INPUT vars"
         for i in INPUT_NUM1 INPUT_NUM2 INPUT_NUM3 INPUT_NUM4; do
             echo "${i} = ${!i}"
         done
+        echo "::endgroup::"
       shell: bash
     - run: |
+        print('::group::Add numbers')
         import os
         nums = []
         for i in range(1,5):
             nums.append(int(os.environ.get(f'INPUT_NUM{i}')))
         print(f'::set-output name=sum::{sum(nums)}')
+        print('::endgroup::')
       id: calculate-sum
       shell: python3 {0}
       env:
