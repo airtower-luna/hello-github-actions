@@ -25,3 +25,7 @@ jobs:
           num2: 4
       - run: |
           echo "Double-Add reports: ${{ steps.doubleadd.outputs.sum }}"
+      - run: |
+          print('\u001b[31mHello Red\u001b[0m')
+          print('\u001b[32mHello Green\u001b[0m')
+        shell: python3 {0}
