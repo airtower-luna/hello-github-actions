@@ -6,7 +6,7 @@ updates:
       # Check for updates to GitHub Actions every weekday
       interval: 'daily'
   - package-ecosystem: 'docker'
-    # Look for a Dockerfile in the root directory
-    directory: '/'
+    # Look for a Dockerfile in action-a
+    directory: '/action-a'
     schedule:
       interval: 'daily'
