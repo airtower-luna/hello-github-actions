@@ -7,6 +7,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - name: Check Python paths
+        run: |
+          for p in python python3 /usr/bin/python3; do
+              if which ${p}; then
+                  ${p} --version
+              fi
+          done
       - uses: ./action-a
         with:
           MY_NAME: 'Mona'
