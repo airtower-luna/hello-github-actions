@@ -10,5 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker pull alpine:latest
-      - name: run command in Docker container
-        run: docker run --rm --network ${{ job.container.network }} alpine:latest wget -O - http://apache/
+      - name: run service container
+        run: docker run --rm --detach --network ${{ job.container.network }} --name apache2 httpd:latest
+      - name: run wget in Docker container
+        run: |
+          docker run --rm --network ${{ job.container.network }} alpine:latest wget -O - http://apache/
+          docker run --rm --network ${{ job.container.network }} alpine:latest wget -O - http://apache2/
