@@ -14,6 +14,8 @@ jobs:
                   ${p} --version
               fi
           done
+      - name: show event type
+        run: echo ${{ github.event_name }}
       - uses: ./action-a
         with:
           MY_NAME: 'Mona'
