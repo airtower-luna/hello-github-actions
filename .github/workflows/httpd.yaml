@@ -1,0 +1,21 @@
+name: HTTPD service
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    services:
+      apache:
+        image: httpd:alpine
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker pull alpine:latest
+      - name: run service container
+        run: docker run --rm --detach --network ${{ job.container.network }} --name apache2 httpd:alpine
+      - name: run wget in Docker container
+        run: |
+          docker run --rm --network ${{ job.container.network }} alpine:latest wget -O - http://apache/
+          docker run --rm --network ${{ job.container.network }} alpine:latest wget -O - http://apache2/
+      - name: stop apache2 container
+        if: always()
+        run: docker stop apache2
