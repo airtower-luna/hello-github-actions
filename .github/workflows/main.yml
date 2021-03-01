@@ -40,7 +40,7 @@ jobs:
           print('\u001b[32mHello Green\u001b[0m')
         shell: python3 {0}
       - name: set name var
-        run: echo "name=airtower-luna" >>${GITHUB_ENV}
-      - name: condition with string concatenation
-        if: github.actor == env.name
+        run: echo "name=luna" >>${GITHUB_ENV}
+      - name: condition with string formatting
+        if: github.actor == format('airtower-{0}', env.name)
         run: echo "true"
