@@ -1,19 +1,24 @@
 name: Sanitize
 on:
   pull_request:
-  push:
-    branches-ignore:
-      - 'dependabot/**'
 
 jobs:
   event_data:
     runs-on: ubuntu-latest
-    name: event data
+    name: pull request title
     steps:
       - name: read event data
         run: |
           import json
+          import os
+          import shlex
           with open('${{ github.event_path }}') as fh:
             event = json.load(fh)
           print(json.dumps(event, indent=4))
+          escaped = shlex.quote(event['pull_request']['title'])
+          print(escaped)
+          with open(os.environ['GITHUB_ENV'], 'a') as fh:
+            print(f'PULL_TITLE={escaped}', file=fh)
         shell: python3 {0}
+      - name: show PULL_TITLE environment variable
+        run: echo $PULL_TITLE
