@@ -1,0 +1,19 @@
+name: Sanitize
+on:
+  pull_request:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+
+jobs:
+  event_data:
+    runs-on: ubuntu-latest
+    name: event data
+    steps:
+      - name: read event data
+        run: |
+          import json
+          with open('${{ github.event_path }}') as fh:
+            event = json.load(fh)
+          print(json.dumps(event, indent=4))
+        shell: python3 {0}
