@@ -1,0 +1,4 @@
+{
+    "secret": "@TEST_SECRET@",
+    "number": 42
+}
