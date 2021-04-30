@@ -1,0 +1,19 @@
+name: env-and-mask
+description: Action that sets an environment variable and masks its value
+author: 'fiona.klute@gmx.de'
+
+inputs:
+  name:
+    description: 'variable name'
+    required: yes
+  value:
+    description: 'variable value'
+    required: yes
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        echo "${{ inputs.name }}=${{ inputs.value }}" >>${GITHUB_ENV}
+        echo "::add-mask::${{ inputs.value }}"
+      shell: bash
