@@ -1,0 +1,21 @@
+name: Test action with a failing step
+description: Composite action where the second of three steps fails always
+author: 'fiona.klute@gmx.de'
+
+inputs: {}
+
+outputs: {}
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        echo "step one, good"
+      shell: bash
+    - run: |
+        echo "step two, fail"
+        false
+      shell: bash
+    - run: |
+        echo "step three, good"
+      shell: bash

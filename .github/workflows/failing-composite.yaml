@@ -1,0 +1,10 @@
+name: Test composite action with failing step
+on: push
+
+jobs:
+  try:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./fail-action
+      - run: echo "this should never run"
