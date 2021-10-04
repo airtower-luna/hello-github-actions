@@ -44,3 +44,6 @@ jobs:
       - name: condition with string formatting
         if: github.actor == format('airtower-{0}', env.name)
         run: echo "true"
+      - name: test bash command with incomplete quote
+        run: |
+          echo "test
