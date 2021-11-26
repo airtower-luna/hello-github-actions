@@ -44,3 +44,9 @@ jobs:
       - name: condition with string formatting
         if: github.actor == format('airtower-{0}', env.name)
         run: echo "true"
+
+  call-test:
+    uses: airtower-luna/hello-github-actions/.github/workflows/reusable-echo.yaml@reusable-workflow
+    with:
+      test: |
+        Hello World!
