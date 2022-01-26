@@ -46,7 +46,7 @@ jobs:
         run: echo "true"
 
   call-test:
-    uses: airtower-luna/hello-github-actions/.github/workflows/reusable-echo.yaml@main
+    uses: ./.github/workflows/reusable-echo.yaml
     with:
       test: |
         Hello World!
