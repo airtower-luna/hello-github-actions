@@ -11,7 +11,7 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v5.1.0
+      - uses: actions/github-script@v6
         id: pre-process
         env:
           TEST: ${{ inputs.test }}
