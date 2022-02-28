@@ -4,11 +4,17 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-20.04
+    container: debian:bullseye
     services:
       apache:
         image: httpd:alpine
     steps:
       - uses: actions/checkout@v2
+      - name: install Docker client
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update
+          apt-get -y install docker.io
       - run: docker pull alpine:latest
       - name: run service container
         run: docker run --rm --detach --network ${{ job.container.network }} --name apache2 httpd:alpine
