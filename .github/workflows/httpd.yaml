@@ -14,7 +14,7 @@ jobs:
         run: |
           export DEBIAN_FRONTEND=noninteractive
           apt-get update
-          apt-get -y install docker.io
+          apt-get -y install --no-install-recommends docker.io
       - run: docker pull alpine:latest
       - name: run service container
         run: docker run --rm --detach --network ${{ job.container.network }} --name apache2 httpd:alpine
@@ -22,6 +22,10 @@ jobs:
         run: |
           docker run --rm --network ${{ job.container.network }} alpine:latest wget -O - http://apache/
           docker run --rm --network ${{ job.container.network }} alpine:latest wget -O - http://apache2/
+      - name: show running containers
+        run: docker ps
+      - name: inspect service container
+        run: docker inspect ${{ job.services.apache.id }}
       - name: stop apache2 container
         if: always()
         run: docker stop apache2
