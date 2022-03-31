@@ -36,14 +36,14 @@ jobs:
         run: |
           import os
           print(os.environ['LABELS'])
-        shell: python3
+        shell: python3 {0}
         env:
           LABELS: ${{ toJSON(github.event.pull_request.labels) }}
       - name: show label names
         run: |
           import os
           print(os.environ['LABELS'])
-        shell: python3
+        shell: python3 {0}
         env:
           LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
       - name: run if labels contain "meow"
