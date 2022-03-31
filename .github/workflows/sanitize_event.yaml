@@ -1,10 +1,11 @@
 name: Sanitize
 on:
   pull_request:
-    - opened
-    - synchronize
-    - reopened
-    - labeled
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - labeled
 
 jobs:
   event_data:
