@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  test:
+    image: alpine:3.14
+    environment:
+      MY_ENV:
+    volumes:
+      - './echo.sh:/echo.sh:ro'
+    command:
+      - /echo.sh

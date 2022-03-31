@@ -1,6 +1,11 @@
 name: Sanitize
 on:
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - labeled
 
 jobs:
   event_data:
@@ -22,3 +27,25 @@ jobs:
         shell: python3 {0}
       - name: show PULL_TITLE environment variable
         run: echo $PULL_TITLE
+
+  check_label:
+    runs-on: ubuntu-latest
+    name: inspect PR labels
+    steps:
+      - name: show labels
+        run: |
+          import os
+          print(os.environ['LABELS'])
+        shell: python3 {0}
+        env:
+          LABELS: ${{ toJSON(github.event.pull_request.labels) }}
+      - name: show label names
+        run: |
+          import os
+          print(os.environ['LABELS'])
+        shell: python3 {0}
+        env:
+          LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+      - name: run if labels contain "meow"
+        if: contains(github.event.pull_request.labels.*.name, 'meow')
+        run: echo "Labels contain \"meow\"."
