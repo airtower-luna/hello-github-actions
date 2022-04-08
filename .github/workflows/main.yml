@@ -19,6 +19,8 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: 'Mona'
+        env:
+          CAT: CUTE
       - uses: ./python-action
         id: tripleadd
         with:
