@@ -1,0 +1,29 @@
+name: Wiki automation test
+on:
+  push:
+    paths:
+      - '.github/workflows/wiki-bot.yaml'
+      - 'wiki-bot.bash'
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Wiki access
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}.wiki
+          path: wiki
+      - run: cat wiki/Home.md
+      - name: Update Bot.md
+        run: bash wiki-bot.bash wiki/
+      - name: Commit and push Bot.md
+        working-directory: wiki
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add Bot.md
+          git commit -m "Wiki bot run!"
+          git push
