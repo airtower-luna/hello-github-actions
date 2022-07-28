@@ -1,5 +1,10 @@
 name: Wiki automation test
-on: push
+on:
+  push:
+    paths:
+      - '.github/workflows/wiki-bot.yaml'
+      - 'wiki-bot.bash'
+  workflow_dispatch:
 
 jobs:
   test:

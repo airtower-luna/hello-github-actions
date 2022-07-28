@@ -7,5 +7,5 @@
 cat - >"${1}/Bot.md" <<EOF
 # Bot
 
-Beep beep, I'm a bot! The time is $(date).
+Beep beep, I'm a bot! The time of my last run was $(date).
 EOF
