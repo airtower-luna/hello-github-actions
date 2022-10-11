@@ -68,6 +68,7 @@ jobs:
               event = json.load(fh)
           print(event['head_commit'])
           tag = event['head_commit']['message'].split()[0]
-          print(f'::set-output name=tag::{shlex.quote(tag)}')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+              print(f'tag={shlex.quote(tag)}', file=fh)
       - name: show tag
         run: echo ${{ steps.gen-tag.outputs.tag }}
