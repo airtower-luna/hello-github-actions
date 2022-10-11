@@ -16,10 +16,11 @@ jobs:
         run: |
           import os
           import shlex
-          # %0A is a URL-encoded newline (\n)
-          output = '%0A'.join(shlex.split(os.environ['INPUT_LIST']))
+          import secrets
+          output = '\n'.join(shlex.split(os.environ['INPUT_LIST']))
+          delimiter = secrets.token_hex()
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-              print(f'list={output}', file=fh)
+              print(f'list<<{delimiter}\n{output}\n{delimiter}', file=fh)
         shell: python3 {0}
         env:
           INPUT_LIST: ${{ steps.files.outputs.list }}
