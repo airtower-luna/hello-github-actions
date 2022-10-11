@@ -8,7 +8,7 @@ jobs:
       - name: define list
         id: files
         run: |
-          echo "::set-output name=list::test.tex \"test 2.tex\""
+          echo "list=test.tex \"test 2.tex\"" >>${GITHUB_OUTPUT}
       - name: show space separated list
         run: echo ${{ steps.files.outputs.list }}
       - name: make list newline separated
@@ -18,7 +18,8 @@ jobs:
           import shlex
           # %0A is a URL-encoded newline (\n)
           output = '%0A'.join(shlex.split(os.environ['INPUT_LIST']))
-          print(f'::set-output name=list::{output}')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+              print(f'list={output}', file=fh)
         shell: python3 {0}
         env:
           INPUT_LIST: ${{ steps.files.outputs.list }}
