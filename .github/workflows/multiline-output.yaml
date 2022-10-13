@@ -28,3 +28,16 @@ jobs:
         run: echo "${LIST}"
         env:
           LIST: ${{ steps.lines.outputs.list }}
+
+  multiple_outputs:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: set outputs
+        id: colors
+        run: |
+          echo "FIRST=green" >>$GITHUB_OUTPUT
+          echo "SECOND=pink" >>$GITHUB_OUTPUT
+      - name: show outputs
+        run: |
+          echo "The first color is ${{ steps.colors.outputs.FIRST }}"
+          echo "The second color is ${{ steps.colors.outputs.SECOND }}"
