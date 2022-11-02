@@ -4,7 +4,7 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
-      day: 'saturday'
+      day: 'thursday'
   # Docker checks don't work recursively, so list both directories.
   - package-ecosystem: 'docker'
     directory: '/action-a'
