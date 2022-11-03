@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/wiki-bot.yaml'
       - 'wiki-bot.bash'
+    branches-ignore:
+      - 'dependabot/**'
   workflow_dispatch:
 
 jobs:
