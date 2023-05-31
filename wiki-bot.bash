@@ -7,5 +7,6 @@
 cat - >"${1}/Bot.md" <<EOF
 # Bot
 
-Beep beep, I'm a bot! The time of my last run was $(date).
+Beep beep, I'm a bot! The time of my last run was $(date), for a
+\`${GITHUB_EVENT_NAME}\` event at \`${GITHUB_REPOSITORY}:${GITHUB_REF}\`.
 EOF
