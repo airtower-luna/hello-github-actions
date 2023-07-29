@@ -1,4 +1,4 @@
-FROM debian:12.0-slim
+FROM debian:12.1-slim
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
