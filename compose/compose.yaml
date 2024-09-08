@@ -1,7 +1,6 @@
-version: '3.7'
 services:
   test:
-    image: alpine:3.14
+    image: alpine:3.20.3
     environment:
       MY_ENV:
     volumes:
