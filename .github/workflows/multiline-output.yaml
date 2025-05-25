@@ -3,7 +3,7 @@ on: push
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: define list
         id: files
@@ -30,7 +30,7 @@ jobs:
           LIST: ${{ steps.lines.outputs.list }}
 
   multiple_outputs:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: set outputs
         id: colors
