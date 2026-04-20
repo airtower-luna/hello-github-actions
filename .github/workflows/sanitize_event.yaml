@@ -27,6 +27,12 @@ jobs:
         shell: python3 {0}
       - name: show PULL_TITLE environment variable
         run: echo $PULL_TITLE
+      - name: remap env variable
+        env:
+          PR_TITLE: ${{ env.PULL_TITLE }}
+        run: |
+          echo "PR_TITLE=${PR_TITLE}"
+          echo "PULL_TITLE=${PULL_TITLE}"
 
   check_label:
     runs-on: ubuntu-latest
