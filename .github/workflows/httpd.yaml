@@ -4,7 +4,7 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: debian:bullseye
+    container: debian:trixie
     services:
       apache:
         image: httpd:alpine
@@ -14,7 +14,7 @@ jobs:
         run: |
           export DEBIAN_FRONTEND=noninteractive
           apt-get update
-          apt-get -y install --no-install-recommends docker.io
+          apt-get -y install --no-install-recommends docker-cli
       - run: docker pull alpine:latest
       - name: run service container
         run: docker run --rm --detach --network ${{ job.container.network }} --name apache2 httpd:alpine
